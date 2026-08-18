@@ -1,0 +1,138 @@
+cd C:\Users\91755\Downloads\api\frontend
+python -m http.server 8080<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Management Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Admin Panel</p>
+          <h1>User Management</h1>
+        </div>
+        <button id="refreshUsersBtn" class="secondary-btn" type="button">
+          Refresh Users
+        </button>
+      </header>
+
+      <section class="stats-row" aria-label="User summary">
+        <div class="stat-box">
+          <span class="stat-label">Total users</span>
+          <strong id="totalUsersStat" class="stat-value">0</strong>
+        </div>
+        <div class="stat-box">
+          <span class="stat-label">Visible rows</span>
+          <strong id="visibleUsersStat" class="stat-value">0</strong>
+        </div>
+        <div class="stat-box status-box">
+          <span class="stat-label">Status</span>
+          <strong id="statusIndicator" class="stat-value status-live">Live</strong>
+        </div>
+      </section>
+
+      <main class="dashboard">
+        <section class="card form-card">
+          <div class="card-header">
+            <h2>Add New User</h2>
+            <span class="card-badge cyan">Create</span>
+          </div>
+          <form id="userForm" class="user-form">
+            <div class="field-group">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Enter full name" required />
+            </div>
+
+            <div class="field-group">
+              <label for="age">Age</label>
+              <input id="age" name="age" type="number" min="1" placeholder="Enter age" required />
+            </div>
+
+            <button class="primary-btn" type="submit">Add User</button>
+          </form>
+        </section>
+
+        <section class="card lookup-card">
+          <div class="card-header">
+            <h2>View User by ID</h2>
+            <span class="card-badge purple">Lookup</span>
+          </div>
+          <div class="lookup-row">
+            <input id="userId" type="number" min="1" placeholder="Enter user ID" />
+            <button id="searchUserBtn" class="secondary-btn" type="button">Search</button>
+          </div>
+          <div id="singleUserResult" class="result-box empty">
+            No user selected yet.
+          </div>
+        </section>
+
+        <section class="card update-card">
+          <div class="card-header">
+            <h2>Update User</h2>
+            <span class="card-badge gold">Edit</span>
+          </div>
+          <form id="updateUserForm" class="user-form">
+            <div class="field-group">
+              <label for="updateUserId">User ID</label>
+              <input id="updateUserId" name="updateUserId" type="number" min="1" placeholder="Enter user ID" required />
+            </div>
+
+            <div class="field-group">
+              <label for="updateName">New Name</label>
+              <input id="updateName" name="updateName" type="text" placeholder="Enter updated name" required />
+            </div>
+
+            <div class="field-group">
+              <label for="updateAge">New Age</label>
+              <input id="updateAge" name="updateAge" type="number" min="1" placeholder="Enter updated age" required />
+            </div>
+
+            <button class="primary-btn" type="submit">Update User</button>
+          </form>
+        </section>
+
+        <section class="card delete-card">
+          <div class="card-header">
+            <h2>Delete Users</h2>
+            <span class="card-badge red">Remove</span>
+          </div>
+          <div class="lookup-row delete-row">
+            <input id="deleteUserId" type="number" min="1" placeholder="Enter user ID to delete" />
+            <button id="deleteUserBtn" class="secondary-btn danger-btn" type="button">Delete Selected ID</button>
+          </div>
+          <button id="clearTableBtn" class="primary-btn danger-primary" type="button">Clear Entire Table</button>
+        </section>
+
+        <section class="card users-card">
+          <div class="card-header table-header">
+            <h2>Users</h2>
+            <span class="card-badge green">Table</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Age</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr>
+                  <td colspan="3" class="empty-state">Loading users...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+
+      <div id="message" class="message hidden" aria-live="polite"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
