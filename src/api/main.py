@@ -46,12 +46,12 @@ def update(user_id: int, user_data: User):
         user = session.get(User, user_id)
         if user is None:
             return {"message":"User not found"}
-    user.name=user_data.name
-    user.age=user_data.age  
-    session.add(user)
-    session.commit()
-    session.refresh(user)
-    return user
+        user.name=user_data.name
+        user.age=user_data.age  
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+        return user
 @app.delete("/users/{user_id}")
 def delete_user(user_id:int):
     with Session(v) as session:
