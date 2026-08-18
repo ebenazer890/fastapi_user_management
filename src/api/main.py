@@ -7,7 +7,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:8080",
         "http://127.0.0.1:8080",
-        "https://coruscating-paletas-f2a6c3.netlify.app",
+        "https://6a844283d52e49122678a5a9--coruscating-paletas-f2a6c3.netlify.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
